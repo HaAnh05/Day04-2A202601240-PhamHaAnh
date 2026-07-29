@@ -1,0 +1,259 @@
+{
+  "transcript_id": "v0_gemini_20260729T162546783858",
+  "version": "v0",
+  "artifact_version": "v0+p6652de4b1c3e+t9113d67e9b20",
+  "prompt_hash": "6652de4b1c3e4060ae4068496c211d105711a75a231263cdcf4bac01d30276c9",
+  "tools_hash": "9113d67e9b207362c77da9534316c60c243f7efacd6a18e092fd6159bab0ec5b",
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "turns": [
+    {
+      "role": "user",
+      "content": "attention is all you need có github hay code đi kèm không?"
+    },
+    {
+      "role": "assistant",
+      "content": "Có, bài báo \"Attention Is All You Need\" có khá nhiều mã nguồn triển khai trên GitHub. Dưới đây là một số kho lưu trữ (repository) phổ biến mà bạn có thể tham khảo:\n\n*   [**LiamMaclean216/Pytorch-Transfomer**](https://github.com/LiamMaclean216/Pytorch-Transfomer): Triển khai bằng PyTorch (323 sao).\n*   [**brandokoch/attention-is-all-you-need-paper**](https://github.com/brandokoch/attention-is-all-you-need-paper): Triển khai bằng Jupyter Notebook (251 sao).\n*   [**Skumarr53/Attention-is-All-you-Need-PyTorch**](https://github.com/Skumarr53/Attention-is-All-you-Need-PyTorch): Triển khai bằng Jupyter Notebook (77 sao).\n*   [**bashnick/transformer**](https://github.com/bashnick/transformer): Triển khai bằng Python (71 sao).\n\nNgoài ra, còn có [**facebookresearch/TimeSformer**](https://github.com/facebookresearch/TimeSformer) là một dự án lớn từ Facebook Research có sử dụng kiến trúc Transformer, tuy nhiên các repo liệt kê ở trên sẽ tập trung trực tiếp vào việc tái hiện lại kiến trúc gốc của bài báo hơn.",
+      "tool_events": [
+        {
+          "tool": "find_paper_code",
+          "args": {
+            "query": "Attention Is All You Need"
+          },
+          "result": {
+            "tool": "find_paper_code",
+            "query": "Attention Is All You Need",
+            "total_found": 5,
+            "repositories": [
+              {
+                "name": "facebookresearch/TimeSformer",
+                "url": "https://github.com/facebookresearch/TimeSformer",
+                "stars": 1863,
+                "is_official": true,
+                "framework": "Python",
+                "source": "GitHub"
+              },
+              {
+                "name": "LiamMaclean216/Pytorch-Transfomer",
+                "url": "https://github.com/LiamMaclean216/Pytorch-Transfomer",
+                "stars": 323,
+                "is_official": true,
+                "framework": "Jupyter Notebook",
+                "source": "GitHub"
+              },
+              {
+                "name": "brandokoch/attention-is-all-you-need-paper",
+                "url": "https://github.com/brandokoch/attention-is-all-you-need-paper",
+                "stars": 251,
+                "is_official": true,
+                "framework": "Jupyter Notebook",
+                "source": "GitHub"
+              },
+              {
+                "name": "Skumarr53/Attention-is-All-you-Need-PyTorch",
+                "url": "https://github.com/Skumarr53/Attention-is-All-you-Need-PyTorch",
+                "stars": 77,
+                "is_official": true,
+                "framework": "Jupyter Notebook",
+                "source": "GitHub"
+              },
+              {
+                "name": "bashnick/transformer",
+                "url": "https://github.com/bashnick/transformer",
+                "stars": 71,
+                "is_official": true,
+                "framework": "Python",
+                "source": "GitHub"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Tìm cho tôi bài báo 'FlashAttention: Fast and Memory-Efficient Exact Attention with DAO', kiểm tra xem bài này có mã nguồn GitHub không, rồi format lại thành bản tóm tắt ngắn gọn"
+    },
+    {
+      "role": "assistant",
+      "content": "# Tóm tắt bài báo: FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness\n\n## Tổng quan\n- Bài báo giới thiệu FlashAttention, một thuật toán attention chính xác (exact attention) được thiết kế để tối ưu hóa việc đọc/ghi dữ liệu (IO-aware) giữa bộ nhớ GPU HBM và SRAM, giúp giải quyết vấn đề chậm và tốn bộ nhớ của cơ chế self-attention truyền thống trên các chuỗi dài. - [arxiv.org](http://arxiv.org/abs/2205.14135v2)\n\n## Kết quả chính\n- FlashAttention giúp tăng tốc độ huấn luyện Transformer đáng kể (ví dụ: 3x trên GPT-2) và cho phép xử lý các chuỗi có độ dài lớn hơn nhiều so với trước đây mà vẫn giữ nguyên độ chính xác. - [arxiv.org](http://arxiv.org/abs/2205.14135v2)\n\n## Mã nguồn\n- Bạn có thể tham khảo mã nguồn triển khai tại: https://github.com/eunsolch/FlashAttention-pytorch - [github.com](https://github.com/eunsolch/FlashAttention-pytorch)",
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+            "api_query": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+            "total_results": 290643,
+            "items": [
+              {
+                "arxiv_id": "2205.14135v2",
+                "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+                "summary": "Transformers are slow and memory-hungry on long sequences, since the time and memory complexity of self-attention are quadratic in sequence length. Approximate attention methods have attempted to address this problem by trading off model quality to reduce the compute complexity, but often do not achieve wall-clock speedup. We argue that a missing principle is making attention algorithms IO-aware -- accounting for reads and writes between levels of GPU memory. We propose FlashAttention, an IO-aware exact attention algorithm that uses tiling to reduce the number of memory reads/writes between GPU high bandwidth memory (HBM) and GPU on-chip SRAM. We analyze the IO complexity of FlashAttention, showing that it requires fewer HBM accesses than standard attention, and is optimal for a range of SRAM sizes. We also extend FlashAttention to block-sparse attention, yielding an approximate attention algorithm that is faster than any existing approximate attention method. FlashAttention trains Transformers faster than existing baselines: 15% end-to-end wall-clock speedup on BERT-large (seq. length 512) compared to the MLPerf 1.1 training speed record, 3$\\times$ speedup on GPT-2 (seq. length 1K), and 2.4$\\times$ speedup on long-range arena (seq. length 1K-4K). FlashAttention and block-sparse FlashAttention enable longer context in Transformers, yielding higher quality models (0.7 better perplexity on GPT-2 and 6.4 points of lift on long-document classification) and entirely new capabilities: the first Transformers to achieve better-than-chance performance on the Path-X challenge (seq. length 16K, 61.4% accuracy) and Path-256 (seq. length 64K, 63.1% accuracy).",
+                "authors": [
+                  "Tri Dao",
+                  "Daniel Y. Fu",
+                  "Stefano Ermon",
+                  "Atri Rudra",
+                  "Christopher Ré"
+                ],
+                "published": "2022-05-27T17:53:09Z",
+                "updated": "2022-06-23T17:53:32Z",
+                "url": "http://arxiv.org/abs/2205.14135v2",
+                "pdf_url": "https://arxiv.org/pdf/2205.14135v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2205.15941v1",
+                "title": "Memory-efficient Segmentation of High-resolution Volumetric MicroCT Images",
+                "summary": "In recent years, 3D convolutional neural networks have become the dominant approach for volumetric medical image segmentation. However, compared to their 2D counterparts, 3D networks introduce substantially more training parameters and higher requirement for the GPU memory. This has become a major limiting factor for designing and training 3D networks for high-resolution volumetric images. In this work, we propose a novel memory-efficient network architecture for 3D high-resolution image segmentation. The network incorporates both global and local features via a two-stage U-net-based cascaded framework and at the first stage, a memory-efficient U-net (meU-net) is developed. The features learnt at the two stages are connected via post-concatenation, which further improves the information flow. The proposed segmentation method is evaluated on an ultra high-resolution microCT dataset with typically 250 million voxels per volume. Experiments show that it outperforms state-of-the-art 3D segmentation methods in terms of both segmentation accuracy and memory efficiency.",
+                "authors": [
+                  "Yuan Wang",
+                  "Laura Blackie",
+                  "Irene Miguel-Aliaga",
+                  "Wenjia Bai"
+                ],
+                "published": "2022-05-31T16:42:48Z",
+                "updated": "2022-05-31T16:42:48Z",
+                "url": "http://arxiv.org/abs/2205.15941v1",
+                "pdf_url": "https://arxiv.org/pdf/2205.15941v1",
+                "source": "arxiv.org",
+                "primary_category": "eess.IV",
+                "categories": [
+                  "eess.IV",
+                  "cs.CV"
+                ]
+              },
+              {
+                "arxiv_id": "2607.10071v1",
+                "title": "FlashBEV: Fast and Memory-Efficient Exact BEV Transformation with IO-Awareness",
+                "summary": "Bird's-eye-view (BEV) perception is a core component of camera-based 3D understanding in autonomous driving, where view transformation (VT) maps multi-camera image features into a unified BEV representation. Sampling-based view transformation (Sampling-VT) is attractive because it supports dense and continuous BEV aggregation for high-resolution and long-range perception. Its deployment bottleneck, however, is systems-level: standard tensorized implementations of Sampling-VT -- which we refer to as Tensorized Sampling-VT -- explicitly materialize large height-dependent intermediate tensors, causing memory and latency costs that scale poorly with vertical resolution and the number of cameras. We revisit Tensorized Sampling-VT from an operator-execution perspective and show that it follows a gather-reduction pattern: each BEV query independently accumulates contributions across cameras and height bins, enabling thread-local accumulation with on-the-fly recomputation that eliminates the need to materialize height- and camera-dependent intermediates. Based on this insight, we propose FlashBEV, a fully fused and IO-aware execution strategy mathematically equivalent to Tensorized Sampling-VT (same operator output) while substantially reducing global memory traffic and kernel-launch overhead. Experiments show that FlashBEV achieves more than an order of magnitude lower peak GPU memory and significant inference-latency speedups, with memory effectively independent of the number of height bins, reducing the operator's peak memory to O(BCXY) (output only). This unlocks higher BEV range/resolution and vertical discretization within fixed deployment budgets on memory-constrained devices. Our contribution is an execution redesign -- same math, different execution -- that removes a key scalability barrier for deployment-ready Sampling-VT. Code available at https://github.com/yokosyun/FlashBEV",
+                "authors": [
+                  "Shunsuke Yokokawa",
+                  "Hironori Kasahara"
+                ],
+                "published": "2026-07-11T01:51:17Z",
+                "updated": "2026-07-11T01:51:17Z",
+                "url": "http://arxiv.org/abs/2607.10071v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.10071v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.CV",
+                "categories": [
+                  "cs.CV",
+                  "cs.RO"
+                ]
+              },
+              {
+                "arxiv_id": "1602.03218v2",
+                "title": "Learning Efficient Algorithms with Hierarchical Attentive Memory",
+                "summary": "In this paper, we propose and investigate a novel memory architecture for neural networks called Hierarchical Attentive Memory (HAM). It is based on a binary tree with leaves corresponding to memory cells. This allows HAM to perform memory access in O(log n) complexity, which is a significant improvement over the standard attention mechanism that requires O(n) operations, where n is the size of the memory. We show that an LSTM network augmented with HAM can learn algorithms for problems like merging, sorting or binary searching from pure input-output examples. In particular, it learns to sort n numbers in time O(n log n) and generalizes well to input sequences much longer than the ones seen during the training. We also show that HAM can be trained to act like classic data structures: a stack, a FIFO queue and a priority queue.",
+                "authors": [
+                  "Marcin Andrychowicz",
+                  "Karol Kurach"
+                ],
+                "published": "2016-02-09T23:24:33Z",
+                "updated": "2016-02-23T10:22:25Z",
+                "url": "http://arxiv.org/abs/1602.03218v2",
+                "pdf_url": "https://arxiv.org/pdf/1602.03218v2",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2105.02783v1",
+                "title": "A Pilot Study of Interplanetary Scintillation with FAST",
+                "summary": "Observations of Interplanetary Scintillation (IPS) are an efficient remote-sensing method to study the solar wind and inner heliosphere. From 2016 to 2018, some distinctive observations of IPS sources like 3C 286 and 3C 279 were accomplished with the Five-hundred-meter Aperture Spherical radio Telescope (FAST), the largest single-dish telescope in the world. Due to the 270-1620 MHz wide frequency coverage of the Ultra-Wideband (UWB) receiver, one can use both single-frequency and dual-frequency analyses to determine the projected velocity of the solar wind. Moreover, based on the extraordinary sensitivity owing to the large collecting surface area of FAST, we can observe weak IPS signals. With the advantages of both the wider frequency coverage and high sensitivity, also with our radio frequency interference (RFI) mitigation strategy and an optimized model-fitting method developed, in this paper, we analyze the fitting confidence intervals of the solar wind velocity, and present some preliminary results achieved using FAST, which points to the current FAST system being highly capable of carrying out observations of IPS",
+                "authors": [
+                  "Li-Jia Liu",
+                  "Bo Peng",
+                  "Lei Yu",
+                  "Ye-Zhao Yu",
+                  "Ji-Guang Lu",
+                  "Bin Liu",
+                  "O. Chang",
+                  "M. M. Bisi",
+                  "FAST Collaboration"
+                ],
+                "published": "2021-04-21T02:36:15Z",
+                "updated": "2021-04-21T02:36:15Z",
+                "url": "http://arxiv.org/abs/2105.02783v1",
+                "pdf_url": "https://arxiv.org/pdf/2105.02783v1",
+                "source": "arxiv.org",
+                "primary_category": "physics.space-ph",
+                "categories": [
+                  "physics.space-ph",
+                  "astro-ph.SR"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        },
+        {
+          "tool": "find_paper_code",
+          "args": {
+            "query": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+          },
+          "result": {
+            "tool": "find_paper_code",
+            "query": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+            "total_found": 1,
+            "repositories": [
+              {
+                "name": "eunsolch/FlashAttention-pytorch",
+                "url": "https://github.com/eunsolch/FlashAttention-pytorch",
+                "stars": 0,
+                "is_official": true,
+                "framework": "Python",
+                "source": "GitHub"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "template": "sections",
+            "items": [
+              {
+                "section": "Tổng quan",
+                "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+                "url": "http://arxiv.org/abs/2205.14135v2",
+                "summary": "Bài báo giới thiệu FlashAttention, một thuật toán attention chính xác (exact attention) được thiết kế để tối ưu hóa việc đọc/ghi dữ liệu (IO-aware) giữa bộ nhớ GPU HBM và SRAM, giúp giải quyết vấn đề chậm và tốn bộ nhớ của cơ chế self-attention truyền thống trên các chuỗi dài."
+              },
+              {
+                "summary": "FlashAttention giúp tăng tốc độ huấn luyện Transformer đáng kể (ví dụ: 3x trên GPT-2) và cho phép xử lý các chuỗi có độ dài lớn hơn nhiều so với trước đây mà vẫn giữ nguyên độ chính xác.",
+                "url": "http://arxiv.org/abs/2205.14135v2",
+                "section": "Kết quả chính",
+                "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+              },
+              {
+                "url": "https://github.com/eunsolch/FlashAttention-pytorch",
+                "summary": "Bạn có thể tham khảo mã nguồn triển khai tại: https://github.com/eunsolch/FlashAttention-pytorch",
+                "section": "Mã nguồn",
+                "title": "FlashAttention-pytorch"
+              }
+            ],
+            "headline": "Tóm tắt bài báo: FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "sections",
+            "markdown": "# Tóm tắt bài báo: FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness\n\n## Tổng quan\n- Bài báo giới thiệu FlashAttention, một thuật toán attention chính xác (exact attention) được thiết kế để tối ưu hóa việc đọc/ghi dữ liệu (IO-aware) giữa bộ nhớ GPU HBM và SRAM, giúp giải quyết vấn đề chậm và tốn bộ nhớ của cơ chế self-attention truyền thống trên các chuỗi dài. - [arxiv.org](http://arxiv.org/abs/2205.14135v2)\n\n## Kết quả chính\n- FlashAttention giúp tăng tốc độ huấn luyện Transformer đáng kể (ví dụ: 3x trên GPT-2) và cho phép xử lý các chuỗi có độ dài lớn hơn nhiều so với trước đây mà vẫn giữ nguyên độ chính xác. - [arxiv.org](http://arxiv.org/abs/2205.14135v2)\n\n## Mã nguồn\n- Bạn có thể tham khảo mã nguồn triển khai tại: https://github.com/eunsolch/FlashAttention-pytorch - [github.com](https://github.com/eunsolch/FlashAttention-pytorch)\n",
+            "item_count": 3
+          }
+        }
+      ]
+    }
+  ],
+  "updated_at": "2026-07-29T16:33:17"
+}

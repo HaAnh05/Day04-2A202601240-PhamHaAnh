@@ -1,0 +1,202 @@
+{
+  "transcript_id": "v0_gemini_20260729T161108754955",
+  "version": "v0",
+  "artifact_version": "v0+p04c0f1422010+t9113d67e9b20",
+  "prompt_hash": "04c0f1422010615dface3c992eda3611486ffe1402c941e3bc61c00b0661c9ff",
+  "tools_hash": "9113d67e9b207362c77da9534316c60c243f7efacd6a18e092fd6159bab0ec5b",
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "turns": [
+    {
+      "role": "user",
+      "content": "search cho tôi bài báo khoa học mới nhất hôm nay"
+    },
+    {
+      "role": "assistant",
+      "content": "# Các bài báo khoa học mới nhất về AI/Machine Learning (28/07/2026)\n\n## Robot Learning\n- **HiFi-UMI: Learning Deployable Manipulation Policies from High-Fidelity UMI Data Alone**: Giới thiệu HiFi-UMI, một hệ thống sản xuất dữ liệu UMI di động giúp huấn luyện các chính sách thao tác robot mà không cần dữ liệu robot thực tế trong giai đoạn hậu huấn luyện. - [arxiv.org](http://arxiv.org/abs/2607.25895v1)\n\n## Thống kê & Y tế\n- **Bias-corrected Cox regression with AI-extracted covariates via calibration summary statistics**: Phát triển khung hiệu chỉnh sai lệch cho mô hình Cox khi các biến số được trích xuất bằng AI có sai số, giúp cải thiện độ chính xác trong các nghiên cứu quan sát quy mô lớn. - [arxiv.org](http://arxiv.org/abs/2607.25868v1)\n\n## Khoa học vật liệu & AI\n- **A Density-Matrix Framework for Electronic-Structure Analysis of Functional-Group and Salt Effects in Lithium-Metal Electrolytes**: Giới thiệu EMolStudio, một nền tảng AI tập trung vào ma trận mật độ để dự đoán và phân tích cấu trúc điện tử trong các chất điện phân pin lithium-metal. - [arxiv.org](http://arxiv.org/abs/2607.25597v1)\n\n## Computer Vision & Y tế\n- **OrthKD: Extracting Generalized Clinical Knowledge from Heterogeneous Teachers for Lightweight Deployment**: Đề xuất OrthKD, một khung chưng cất tri thức (KD) chọn lọc giúp triển khai các mô hình sàng lọc bệnh võng mạc tiểu đường hiệu quả trên thiết bị biên. - [arxiv.org](http://arxiv.org/abs/2607.25545v1)\n\n## An ninh mạng & AI\n- **The Disruptive Impact of Large Language Models on Capture the Flag Competitions and the Path Toward Fair Play**: Nghiên cứu tác động của LLM đối với các cuộc thi Capture the Flag (CTF) và đề xuất khung bảo vệ để duy trì tính công bằng và giá trị giáo dục của các cuộc thi này. - [arxiv.org](http://arxiv.org/abs/2607.25425v1)",
+      "tool_events": [
+        {
+          "tool": "papers",
+          "args": {
+            "query": "AI machine learning",
+            "sort_by": "submittedDate"
+          },
+          "result": {
+            "tool": "arxiv_search",
+            "query": "AI machine learning",
+            "api_query": "all:AI AND all:machine AND all:learning",
+            "total_results": 20819,
+            "items": [
+              {
+                "arxiv_id": "2607.25895v1",
+                "title": "HiFi-UMI: Learning Deployable Manipulation Policies from High-Fidelity UMI Data Alone",
+                "summary": "Learning deployable manipulation policies is bottlenecked by the scarcity of data that is both high-fidelity and scalable. Real-robot teleoperation is accurate but costly to scale; robot-free UMI capture scales readily, and current practice uses the resulting data mainly for pre-training, adding a small real-robot \"anchor\" at post-training. We ask whether raising the fidelity of robot-free UMI data, rather than shrinking the real-robot fraction, can remove that anchor. We present HiFi-UMI, a portable UMI data-production system co-designed for trajectory accuracy, inter-gripper relative pose, synchronization, and field of view: head-mounted offline stereo-inertial SLAM, native rather than reconstructed relative pose, a shared microsecond GPIO trigger, and two wide-angle cameras per hand covering ~200 degrees. It reaches 3 mm workspace-local end-effector accuracy without external tracking infrastructure. Using this corpus, we demonstrate zero-robot post-training: a policy post-trained solely on HiFi-UMI demonstrations deploys directly on a real robot and matches in-domain teleoperation across three backbones spanning the vision-language-action and world-action-model families, with success-rate differences of -2.5, +3.1, and -0.6 percentage points on StarVLA-QwenPI, OpenPI-pi_0.5, and LingBot-VA; the strongest policy reaches 85% on a precision insertion task, even though the teleoperation baseline is collected in the evaluation scene and no HiFi-UMI trajectory is. Pre-training on 4,000 hours from the same corpus lowers action error on ten unseen tasks by 41% and, on StarVLA-QwenPI, raises real-robot success by a further 18.1 percentage points. We open-source HiFi-UMI-2K, 2,000 hours of microsecond-synchronized, ultra-wide-FoV demonstrations, each automatically reconstructed and validated through simulation replay, as a large-scale, high-fidelity resource for the robot-learning community.",
+                "authors": [
+                  "Simple AI",
+                  ":",
+                  "Yuteng Wei",
+                  "Jinming Ma",
+                  "Jiawei Wang",
+                  "Weitao Zhou",
+                  "Yushen Zuo",
+                  "Ke Rui",
+                  "Minglei Li",
+                  "Jinhao Zhang",
+                  "Zhikang Pan",
+                  "Xiang Wang",
+                  "Haoran Jia",
+                  "Huan Du",
+                  "Zicheng Zeng",
+                  "Jun Ma",
+                  "Guiyu Qin",
+                  "Di Zhang",
+                  "Xiaofei Li"
+                ],
+                "published": "2026-07-28T15:52:02Z",
+                "updated": "2026-07-28T15:52:02Z",
+                "url": "http://arxiv.org/abs/2607.25895v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25895v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.RO",
+                "categories": [
+                  "cs.RO",
+                  "cs.CV",
+                  "cs.LG"
+                ]
+              },
+              {
+                "arxiv_id": "2607.25868v1",
+                "title": "Bias-corrected Cox regression with AI-extracted covariates via calibration summary statistics",
+                "summary": "Large-scale observational studies increasingly rely on AI pipelines to extract structured variables from unstructured clinical records. A common workflow separates the data vendor, who validates extraction accuracy with a gold-standard sample, from the downstream researcher, who receives only the extracted dataset and summary accuracy statistics. We develop a bias-correction framework for the Cox proportional hazards model when covariates are subject to AI extraction error. Within a unified multivariate calibration framework, we show that the naive Cox estimator's bias decomposes into a leading-order calibration term and a second-order residual that vanishes as extraction accuracy improves. The leading-order term yields a corrected estimator that operates as a post-hoc matrix multiplication on the output of any standard Cox software. We further derive bias-adjusted confidence intervals that incorporate calibration uncertainty and a sensitivity diagnostic for assessing whether the neglected residual could materially affect inference. Synthetic data experiments with cross-dependent extraction errors and controlled nonlinear calibration violations confirm that the correction substantially reduces bias and achieves near-nominal coverage even under mild violations of the linear calibration assumption. The framework yields a concrete reporting specification: a short list of summary statistics that data vendors should provide alongside any AI-extracted covariate dataset used in survival analysis.",
+                "authors": [
+                  "Arjun Sondhi"
+                ],
+                "published": "2026-07-28T15:35:52Z",
+                "updated": "2026-07-28T15:35:52Z",
+                "url": "http://arxiv.org/abs/2607.25868v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25868v1",
+                "source": "arxiv.org",
+                "primary_category": "stat.ME",
+                "categories": [
+                  "stat.ME",
+                  "stat.ML"
+                ]
+              },
+              {
+                "arxiv_id": "2607.25597v1",
+                "title": "A Density-Matrix Framework for Electronic-Structure Analysis of Functional-Group and Salt Effects in Lithium-Metal Electrolytes",
+                "summary": "The reactivity of lithium-metal electrolytes arises from the interplay of molecular functional groups, Li$^+$ solvation, and salt-anion participation. This interplay operates through the redistribution of electron density across donor, anion, and cation centers, which is most directly read out from the electronic structure resolved in space. Quantum-chemical calculations deliver such readouts faithfully, yet become computationally demanding across this multidimensional design space, and machine-learning electronic-structure models seldom cover chemically diverse solvation shells or electrolyte-relevant readouts. Here, we present a density-matrix-centered AI platform (EMolStudio) for electronic-structure prediction and analysis. Its workflow integrates molecular functionalization, explicit Li$^+$ first-shell assembly, density-matrix prediction with idempotency projection, and readouts of frontier orbitals, electrostatic potential, Li$^+$-donor bond order, and electron localization. We apply EMolStudio to 163,655 functionalized molecules and 22,500 explicit Li$^+$ first-shell clusters across four lithium salts. We find that 1) at the molecular scale, functionalization distinguishes CO$_2$Me, CN, F/CF$_3$, and sulfonyl groups by chemically distinct changes in frontier levels, electrostatic potential, and Li$^+$-donor contact, consistent with $π^*$-acceptor, inductive, and polarization contributions, with sublinear accumulation at higher degrees of functionalization; 2) in explicit solvation shells, anion identity reshapes frontier-orbital localization: LiTDI anchors the HOMO on the anion across the entire library, whereas LiDFOB pairs an anion-hosted HOMO with strongly functional-group-dependent LUMO hosting. EMolStudio thereby translates functional-group and salt choices into electronic-structure hypotheses relevant to lithium-bond formation, desolvation, and interphase reactions.",
+                "authors": [
+                  "Mingkang Liu",
+                  "Huize Yu",
+                  "Yanbin Gao",
+                  "Nan Yao",
+                  "Xiang Chen",
+                  "Lei Shen"
+                ],
+                "published": "2026-07-28T11:28:03Z",
+                "updated": "2026-07-28T11:28:03Z",
+                "url": "http://arxiv.org/abs/2607.25597v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25597v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI"
+                ]
+              },
+              {
+                "arxiv_id": "2607.25545v1",
+                "title": "OrthKD: Extracting Generalized Clinical Knowledge from Heterogeneous Teachers for Lightweight Deployment",
+                "summary": "Deploying diabetic retinopathy (DR) screening models in primary care requires edge-efficient systems that remain accurate, safe, and reliable under domain shift. Multi-teacher knowledge distillation (KD) is a natural compression strategy, but existing approaches largely assume that all teachers provide equally trustworthy supervision. In our setting, this assumption fails: a strong CNN teacher (EfficientNet-B3, 0.876 QWK) and a weaker Transformer teacher (Swin-Base, 0.830 QWK) are complementary, yet the Transformer's logits can still mislead the student. We therefore propose OrthKD, a selective-trust distillation framework that transfers full supervision from the strong CNN, uses feature-only distillation from the weak ViT, and enforces orthogonality between teacher-specific student projections to encourage complementary rather than redundant evidence. This design preserves local lesion precision, injects global structural context, and improves robustness to distribution shift. On 132,049 retinal images, a 5.4M-parameter MobileNetV3 student reaches 0.885 QWK on EyePACS and improves zero-shot Messidor-2 performance from 0.507 to 0.728 QWK, while also achieving strong referral AUC and calibration. These results show that selectively distilling heterogeneous teachers can enable practical DR screening on resource-constrained devices.",
+                "authors": [
+                  "Yi Xu",
+                  "Cheng Chen",
+                  "Mufan Cao"
+                ],
+                "published": "2026-07-28T10:24:40Z",
+                "updated": "2026-07-28T10:24:40Z",
+                "url": "http://arxiv.org/abs/2607.25545v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25545v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.LG",
+                "categories": [
+                  "cs.LG",
+                  "cs.CV"
+                ]
+              },
+              {
+                "arxiv_id": "2607.25425v1",
+                "title": "The Disruptive Impact of Large Language Models on Capture the Flag Competitions and the Path Toward Fair Play",
+                "summary": "Capture the Flag (CTF) competitions are among cybersecurity's most effective training grounds, developing practical skill across cryptography, web exploitation, and binary exploitation. Large language models (LLMs) can now solve a growing share of challenges with minimal human input, raising urgent questions about fairness, the validity of rankings, and whether participation still delivers the learning that justifies the effort. This paper reports a mixed-methods study of LLM impact on modern CTFs, combining a synthesis of published benchmarks, including a recent government evaluation, case studies of live competition across three challenge categories, structured observation of the public channels where the community debates AI use, and semi-structured interviews with experienced players and organisers. We map the current human-machine capability boundary by category, showing that easy and intermediate challenges in cryptography, web, and binary exploitation are now reliably automated while narrower sub-categories continue to resist. We find that community disagreement about whether AI should be permitted is downstream of an undeclared prior question: what a competition is for. Against this backdrop we contribute a four-component safeguard framework, combining tiered competition divisions, LLM-resistant challenge design, telemetry used investigatively, and a draft community code of conduct, together with a decision tool that ties the combination of safeguards to a competition's declared purpose. The argument reaches beyond CTFs to any setting in cybersecurity where a demonstrated result is taken as evidence of an underlying ability.",
+                "authors": [
+                  "Michael Macaulay",
+                  "Harmony Bouabid",
+                  "Guo Gen Ang",
+                  "Sasha Shaw"
+                ],
+                "published": "2026-07-28T08:21:41Z",
+                "updated": "2026-07-28T08:21:41Z",
+                "url": "http://arxiv.org/abs/2607.25425v1",
+                "pdf_url": "https://arxiv.org/pdf/2607.25425v1",
+                "source": "arxiv.org",
+                "primary_category": "cs.AI",
+                "categories": [
+                  "cs.AI",
+                  "cs.CR",
+                  "cs.CY"
+                ]
+              }
+            ],
+            "rate_limit_note": "arXiv may return 429 if called too frequently; this tool waits at least 3 seconds between requests in-process."
+          }
+        },
+        {
+          "tool": "format",
+          "args": {
+            "headline": "Các bài báo khoa học mới nhất về AI/Machine Learning (28/07/2026)",
+            "items": [
+              {
+                "summary": "Giới thiệu HiFi-UMI, một hệ thống sản xuất dữ liệu UMI di động giúp huấn luyện các chính sách thao tác robot mà không cần dữ liệu robot thực tế trong giai đoạn hậu huấn luyện.",
+                "title": "HiFi-UMI: Learning Deployable Manipulation Policies from High-Fidelity UMI Data Alone",
+                "url": "http://arxiv.org/abs/2607.25895v1",
+                "section": "Robot Learning"
+              },
+              {
+                "title": "Bias-corrected Cox regression with AI-extracted covariates via calibration summary statistics",
+                "summary": "Phát triển khung hiệu chỉnh sai lệch cho mô hình Cox khi các biến số được trích xuất bằng AI có sai số, giúp cải thiện độ chính xác trong các nghiên cứu quan sát quy mô lớn.",
+                "url": "http://arxiv.org/abs/2607.25868v1",
+                "section": "Thống kê & Y tế"
+              },
+              {
+                "url": "http://arxiv.org/abs/2607.25597v1",
+                "title": "A Density-Matrix Framework for Electronic-Structure Analysis of Functional-Group and Salt Effects in Lithium-Metal Electrolytes",
+                "summary": "Giới thiệu EMolStudio, một nền tảng AI tập trung vào ma trận mật độ để dự đoán và phân tích cấu trúc điện tử trong các chất điện phân pin lithium-metal.",
+                "section": "Khoa học vật liệu & AI"
+              },
+              {
+                "summary": "Đề xuất OrthKD, một khung chưng cất tri thức (KD) chọn lọc giúp triển khai các mô hình sàng lọc bệnh võng mạc tiểu đường hiệu quả trên thiết bị biên.",
+                "url": "http://arxiv.org/abs/2607.25545v1",
+                "title": "OrthKD: Extracting Generalized Clinical Knowledge from Heterogeneous Teachers for Lightweight Deployment",
+                "section": "Computer Vision & Y tế"
+              },
+              {
+                "url": "http://arxiv.org/abs/2607.25425v1",
+                "title": "The Disruptive Impact of Large Language Models on Capture the Flag Competitions and the Path Toward Fair Play",
+                "section": "An ninh mạng & AI",
+                "summary": "Nghiên cứu tác động của LLM đối với các cuộc thi Capture the Flag (CTF) và đề xuất khung bảo vệ để duy trì tính công bằng và giá trị giáo dục của các cuộc thi này."
+              }
+            ],
+            "template": "sections"
+          },
+          "result": {
+            "tool": "render_digest",
+            "template": "sections",
+            "markdown": "# Các bài báo khoa học mới nhất về AI/Machine Learning (28/07/2026)\n\n## Robot Learning\n- Giới thiệu HiFi-UMI, một hệ thống sản xuất dữ liệu UMI di động giúp huấn luyện các chính sách thao tác robot mà không cần dữ liệu robot thực tế trong giai đoạn hậu huấn luyện. - [arxiv.org](http://arxiv.org/abs/2607.25895v1)\n\n## Thống kê & Y tế\n- Phát triển khung hiệu chỉnh sai lệch cho mô hình Cox khi các biến số được trích xuất bằng AI có sai số, giúp cải thiện độ chính xác trong các nghiên cứu quan sát quy mô lớn. - [arxiv.org](http://arxiv.org/abs/2607.25868v1)\n\n## Khoa học vật liệu & AI\n- Giới thiệu EMolStudio, một nền tảng AI tập trung vào ma trận mật độ để dự đoán và phân tích cấu trúc điện tử trong các chất điện phân pin lithium-metal. - [arxiv.org](http://arxiv.org/abs/2607.25597v1)\n\n## Computer Vision & Y tế\n- Đề xuất OrthKD, một khung chưng cất tri thức (KD) chọn lọc giúp triển khai các mô hình sàng lọc bệnh võng mạc tiểu đường hiệu quả trên thiết bị biên. - [arxiv.org](http://arxiv.org/abs/2607.25545v1)\n\n## An ninh mạng & AI\n- Nghiên cứu tác động của LLM đối với các cuộc thi Capture the Flag (CTF) và đề xuất khung bảo vệ để duy trì tính công bằng và giá trị giáo dục của các cuộc thi này. - [arxiv.org](http://arxiv.org/abs/2607.25425v1)\n",
+            "item_count": 5
+          }
+        }
+      ]
+    }
+  ],
+  "updated_at": "2026-07-29T16:11:36"
+}

@@ -1,7 +1,269 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
+  "description": "10 eval cases thiết kế riêng cho chủ đề Research Paper Scout: 5 single-turn và 5 multi-turn.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_find_paper_code_single",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm code PyTorch/GitHub cho bài báo Attention Is All You Need",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "find_paper_code",
+            "args": {
+              "query": "Attention Is All You Need"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "routing_find_paper_code",
+        "difficulty": "easy",
+        "what_it_tests": "Tìm code cho bài báo -> gọi tool find_paper_code."
+      }
+    },
+    {
+      "id": "G02_arxiv_paper_search",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm các bài báo mới nhất về Mixture of Experts trên arXiv",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "papers",
+            "args": {
+              "query": "Mixture of Experts"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "routing_arxiv_search",
+        "difficulty": "easy",
+        "what_it_tests": "Tìm bài báo arXiv theo chủ đề -> gọi papers."
+      }
+    },
+    {
+      "id": "G03_arxiv_text_extraction",
+      "phase": "B",
+      "suite": "group",
+      "query": "Đọc trích dẫn nội dung bài báo arXiv: 2312.00752",
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "2312.00752"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "routing_paper_text",
+        "difficulty": "medium",
+        "what_it_tests": "Trích nội dung bài báo arXiv ID -> gọi paper_text."
+      }
+    },
+    {
+      "id": "G04_out_of_scope_cooking",
+      "phase": "B",
+      "suite": "group",
+      "query": "Công thức nấu món phở bò truyền thống ngon tại nhà",
+      "failure_type": "out_of_scope",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "metadata": {
+        "skill": "out_of_scope",
+        "difficulty": "easy",
+        "what_it_tests": "Câu hỏi ẩm thực ngoài phạm vi research -> không gọi tool."
+      }
+    },
+    {
+      "id": "G05_clarify_missing_paper_title",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm code GitHub đi kèm của bài báo này giúp mình",
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "clarify_missing_paper_title",
+        "difficulty": "medium",
+        "what_it_tests": "Thiếu tên bài báo -> gọi clarify xin thông tin."
+      }
+    },
+    {
+      "id": "G06_multiturn_paper_to_code",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tìm bài báo LoRA Fine-tuning trên arXiv"
+        },
+        {
+          "role": "user",
+          "content": "Tìm luôn code implementation của bài báo đó"
+        }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "find_paper_code",
+            "args": {
+              "query": "LoRA Fine-tuning"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_paper_to_code",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: chuyển từ tìm bài báo sang tìm code implementation -> gọi find_paper_code với tên bài báo từ lượt trước."
+      }
+    },
+    {
+      "id": "G07_multiturn_paper_text_read",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Bài báo 2305.14314 nói về chủ đề gì?"
+        },
+        {
+          "role": "user",
+          "content": "Đọc chi tiết văn bản bài báo 2305.14314 cho mình"
+        }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "paper_text",
+            "args": {
+              "arxiv_url": "2305.14314"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_paper_text_read",
+        "difficulty": "medium",
+        "what_it_tests": "Multi-turn: yêu cầu đọc chi tiết văn bản arXiv ID -> gọi paper_text."
+      }
+    },
+    {
+      "id": "G08_multiturn_carry_limit_code",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tìm mã nguồn bài báo LLaMA 3"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ lấy tối đa 3 repository thôi"
+        }
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "find_paper_code",
+            "args": {
+              "max_results": 3,
+              "query": "LLaMA 3"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_carry_limit_code",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: carry tên bài báo LLaMA 3 và cập nhật max_results=3."
+      }
+    },
+    {
+      "id": "G09_multiturn_confirm_telegram_paper",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tóm tắt bài báo Attention Is All You Need"
+        },
+        {
+          "role": "user",
+          "content": "Đăng tóm tắt này lên kênh Telegram giúp mình"
+        }
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_confirm_telegram_paper",
+        "difficulty": "medium",
+        "what_it_tests": "Multi-turn: yêu cầu đăng bài báo lên Telegram -> gọi clarify xác nhận yes_no."
+      }
+    },
+    {
+      "id": "G10_multiturn_switch_paper_to_web",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {
+          "role": "user",
+          "content": "Tìm bài báo GPT-4 trên arXiv"
+        },
+        {
+          "role": "user",
+          "content": "Bỏ arXiv đi, chuyển sang tìm tin tức web về GPT-4"
+        }
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "GPT-4",
+              "topic": "news"
+            }
+          }
+        ]
+      },
+      "metadata": {
+        "skill": "multiturn_switch_paper_to_web",
+        "difficulty": "hard",
+        "what_it_tests": "Multi-turn: chuyển đổi nguồn từ arXiv sang web news -> gọi lookup."
+      }
+    }
+  ]
 }

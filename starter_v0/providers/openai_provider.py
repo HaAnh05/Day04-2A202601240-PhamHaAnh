@@ -39,6 +39,8 @@ class OpenAIProvider:
         if not api_key:
             raise RuntimeError(f"Missing API key env var: {self.api_key_env}")
 
+        import time
+
         client = OpenAI(api_key=api_key, base_url=self.base_url)
         kwargs: dict[str, Any] = {
             "model": model or self.default_model,
@@ -50,10 +52,23 @@ class OpenAIProvider:
         if tool_choice is not None:
             kwargs["tool_choice"] = tool_choice
 
-        resp = client.chat.completions.create(**kwargs)
+        for attempt in range(8):
+            try:
+                resp = client.chat.completions.create(**kwargs)
+                break
+            except Exception as exc:
+                err_str = str(exc)
+                if "429" in err_str or "rate_limit" in err_str.lower():
+                    time.sleep(15)
+                else:
+                    raise exc
+        else:
+            resp = client.chat.completions.create(**kwargs)
+
         msg = resp.choices[0].message
         calls: list[ToolCall] = []
         for call in msg.tool_calls or []:
             args = json.loads(call.function.arguments or "{}")
             calls.append(ToolCall(name=call.function.name, args=args))
         return ModelResponse(text=msg.content, tool_calls=calls, raw=resp)
+

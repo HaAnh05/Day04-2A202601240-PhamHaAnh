@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Paper Scout Agent — Architecture & Workflow</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-pink: #ec4899;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.15));
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-purple);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: #c084fc;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-custom {
+      background-color: rgba(236, 72, 153, 0.2);
+      color: var(--accent-pink);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+    }
+
+    .badge-core {
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      background-color: #0f172a;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+    }
+
+    section {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: #38bdf8;
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 0.5rem;
+    }
+
+    .mermaid {
+      background-color: #0b1120;
+      padding: 1.5rem;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: #0f172a;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-purple);
+    }
+
+    .step-num {
+      background: var(--accent-purple);
+      color: white;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      color: #f1f5f9;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--card-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Research Paper Scout Agent</h1>
+      <p>Sơ đồ luồng xử lý (Workflow) & Hệ thống Tools (Gemini 3.1 Flash Lite — 100% Accuracy)</p>
+    </header>
+
+    <!-- SECTION: TOOLS MATRIX -->
+    <section>
+      <h2>Danh sách Tools Agent Đang Sử Dụng</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>find_paper_code <span class="badge badge-custom">Tool Mới (Custom)</span></h3>
+          <p>Tìm kiếm mã nguồn mở (official / community GitHub repositories) đi kèm của bài báo khoa học dựa trên tên bài báo, arXiv ID hoặc từ khóa.</p>
+          <p><strong>Input:</strong> <code>query="Attention Is All You Need"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>papers <span class="badge badge-core">Research Core</span></h3>
+          <p>Tra cứu danh sách bài báo khoa học trên arXiv theo từ khóa chủ đề và tiêu chí sắp xếp ngày đăng.</p>
+          <p><strong>Input:</strong> <code>query="Mixture of Experts"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>paper_text <span class="badge badge-core">Research Core</span></h3>
+          <p>Trích xuất văn bản chi tiết từ PDF bài báo arXiv dựa vào URL hoặc arXiv ID.</p>
+          <p><strong>Input:</strong> <code>arxiv_url="2312.00752"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>clarify <span class="badge badge-core">Boundary & Control</span></h3>
+          <p>Hỏi lại người dùng khi thiếu thông tin (Handle, URL) hoặc xin xác nhận <code>yes_no</code> trước hành động nhạy cảm (Telegram).</p>
+          <p><strong>Input:</strong> <code>response_type="yes_no"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>lookup <span class="badge badge-core">Web & News</span></h3>
+          <p>Tìm kiếm thông tin tin tức thời sự trên Internet. Tham số <code>query</code> giữ từ khóa tối giản ngắn gọn.</p>
+          <p><strong>Input:</strong> <code>query="AI", topic="news"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>social_search <span class="badge badge-core">Social Search</span></h3>
+          <p>Tìm kiếm các bài đăng trên mạng xã hội Twitter theo từ khóa (Latest hoặc Top).</p>
+          <p><strong>Input:</strong> <code>query="GPT-5", search_type="Top"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>timeline <span class="badge badge-core">Social Timeline</span></h3>
+          <p>Lấy bài đăng mới nhất của tài khoản cụ thể theo screenname/handle (VD: <code>sama</code>, <code>elonmusk</code>).</p>
+          <p><strong>Input:</strong> <code>screenname="sama"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>fetch <span class="badge badge-core">Web Content</span></h3>
+          <p>Đọc nội dung văn bản trực tiếp từ một đường dẫn URL bài viết cụ thể.</p>
+          <p><strong>Input:</strong> <code>url="https://..."</code></p>
+        </div>
+
+        <div class="card">
+          <h3>format <span class="badge badge-core">Formatting</span></h3>
+          <p>Tổng hợp các items dữ liệu đã thu thập thành bản tin tóm tắt Markdown đẹp mắt.</p>
+          <p><strong>Input:</strong> <code>template="sections"</code></p>
+        </div>
+
+        <div class="card">
+          <h3>send <span class="badge badge-core">Action</span></h3>
+          <p>Đăng bài lên Telegram (chỉ kích hoạt sau khi người dùng đã xác nhận Yes/No qua tool clarify).</p>
+          <p><strong>Input:</strong> <code>text="...", confirmed=true</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: WORKFLOW DIAGRAM -->
+    <section>
+      <h2>Sơ Đồ Luồng Xử Lý (Workflow Diagram)</h2>
+      <div class="mermaid">
+        graph TD
+          A[👤 User Query / Request] --> B{🔍 Agent Routing Decision}
+          
+          %% Branch 1: Research Paper Scout
+          B -->|Tìm bài báo khoa học| C1[📚 papers]
+          B -->|Đọc nội dung bài báo| C2[📄 paper_text]
+          B -->|Tìm code bài báo / GitHub| C3[💻 find_paper_code]
+
+          %% Branch 2: Web & Social
+          B -->|Tìm tin tức web| D1[🌐 lookup]
+          B -->|Tìm tweet theo từ khóa| D2[🐦 social_search]
+          B -->|Tìm tweet tài khoản cụ thể| D3[👤 timeline]
+          B -->|Đọc chi tiết URL| D4[📖 fetch]
+
+          %% Branch 3: Parallel Calls
+          B -->|Cần cả Tin tức + Tweets| E[⚡ Parallel Calls: lookup + social_search]
+
+          %% Branch 4: Clarification Boundaries
+          B -->|Thiếu Handle / Thiếu URL| F1[❓ clarify: response_type = text]
+          B -->|Đăng bài Telegram nhạy cảm| F2[🔒 clarify: response_type = yes_no]
+          F2 -->|User đồng ý| F3[🚀 send Telegram]
+
+          %% Branch 5: Out of Scope / Meta
+          B -->|Toán học / Code thuần / Meta| G[💬 Direct Answer / Refuse: No Tool]
+
+          %% Output Aggregation
+          C1 --> H[📝 Format Markdown & Trả lời User]
+          C2 --> H
+          C3 --> H
+          D1 --> H
+          D2 --> H
+          D3 --> H
+          D4 --> H
+          E --> H
+          F1 --> H
+          G --> H
+      </div>
+    </section>
+
+    <!-- SECTION: STEP-BY-STEP EXECUTION FLOW -->
+    <section>
+      <h2>Các Bước Trong Vòng Lặp Xử Lý Trực Tiếp (Agent Execution Loop)</h2>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Tiếp Nhận Request & Phân Tích Ý Định (Intent Analysis)</h4>
+            <p>Hệ thống nhận input từ người dùng (Streamlit UI hoặc CLI) và chuyển đến Gemini Provider với System Prompt ranh giới chuẩn mực.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Đánh Giá Ranh Giới (Boundary & Policy Check)</h4>
+            <p>Nếu là câu hỏi ngoài phạm vi (Toán học/Meta) ➔ Trả lời trực tiếp không dùng Tool (No-Tool). Nếu thiếu thông tin/cần đăng bài ➔ Gọi <code>clarify</code> với <code>response_type</code> chuẩn.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Thực Thi Tool Trực Tiếp Hoặc Song Song (Tool Execution)</h4>
+            <p>Thực thi các hàm Python thực tế (như tra cứu GitHub API trong <code>find_paper_code</code> hoặc arXiv API trong <code>papers</code>). Hỗ trợ gọi song song nhiều tool khi cần thiết.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Tổng Hợp & Phản Hồi Kết Quả (Digest & Response)</h4>
+            <p>Kết quả từ Tool được định dạng thành Markdown đẹp mắt, hiển thị Trace gọi Tool minh bạch trên Streamlit UI và lưu lại JSON Log làm bằng chứng.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Research Paper Scout Agent — Day 04 Lab v2 | Powered by Gemini 3.1 Flash Lite (100% Eval Accuracy)</p>
+    </footer>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+  </script>
+</body>
+</html>

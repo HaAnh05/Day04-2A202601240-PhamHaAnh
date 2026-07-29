@@ -30,13 +30,16 @@ def _rate_limit_arxiv() -> None:
 
 def _arxiv_get(url: str, *, params: dict[str, Any] | None = None) -> requests.Response:
     last_response: requests.Response | None = None
-    for attempt in range(3):
+    for attempt in range(2):
         _rate_limit_arxiv()
-        response = requests.get(url, params=params, headers={"User-Agent": _arxiv_user_agent()}, timeout=TIMEOUT)
-        last_response = response
-        if response.status_code != 429:
-            return response
-        time.sleep(3 * (attempt + 1))
+        try:
+            response = requests.get(url, params=params, headers={"User-Agent": _arxiv_user_agent()}, timeout=5)
+            last_response = response
+            if response.status_code != 429:
+                return response
+        except Exception:
+            pass
+        time.sleep(1)
     assert last_response is not None
     return last_response
 
